@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bil Bakalım: Ülke Bayrakları Oyunu</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Başlangıç Ekranı -->
+    <div id="start-screen">
+      <h1>Bil Bakalım</h1>
+      <p>Oyun Modu Seç:</p>
+      <select id="game-mode" style="margin-bottom:12px;">
+        <option value="flag">Bayrak Bilmece</option>
+        <option value="city">Şehirden Ülke Bilmece</option>
+      </select>
+      <p>Kaç yanlış bilme hakkı ile oynamak istersin?</p>
+      <input type="number" id="max-wrong" min="1" max="10" value="3">
+      <div id="continent-select" style="margin:18px 0;">
+        <label style="font-weight:500;">Kıta Seç:</label><br>
+        <label><input type="checkbox" class="continent-checkbox" value="Africa" checked> Afrika</label>
+        <label><input type="checkbox" class="continent-checkbox" value="Asia" checked> Asya</label>
+        <label><input type="checkbox" class="continent-checkbox" value="Europe" checked> Avrupa</label>
+        <label><input type="checkbox" class="continent-checkbox" value="North America" checked> Kuzey Amerika</label>
+        <label><input type="checkbox" class="continent-checkbox" value="South America" checked> Güney Amerika</label>
+        <label><input type="checkbox" class="continent-checkbox" value="Oceania" checked> Okyanusya</label>
+        <label><input type="checkbox" class="continent-checkbox" value="Antarctic" checked> Antarktika</label>
+      </div>
+      <button id="start-btn">Başla</button>
+    </div>
+    <!-- Oyun Ekranı -->
+    <div id="game-screen" style="display:none;">
+      <div id="score-info">
+        <span id="wrong-count"></span>
+      </div>
+      <div id="flag-area">
+        <img id="flag-img" src="" alt="Bayrak" />
+        <div id="city-name" style="display:none;"></div>
+      </div>
+      <input type="text" id="country-input" placeholder="Ülke adını yaz...">
+      <button id="submit-btn">Gönder</button>
+      <div id="feedback"></div>
+      <audio id="correct-sound" src="correct.mp3" preload="auto"></audio>
+      <audio id="wrong-sound" src="wrong.mp3" preload="auto"></audio>
+      <div style="margin: 18px 0 10px 0; display: flex; justify-content: center; gap: 16px; flex-wrap:wrap;">
+        <button id="toggle-sfx">Ses Efektleri: Açık</button>
+        <button id="toggle-music">Müzik: Açık</button>
+        <button id="hint-btn">İpucu</button>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center; gap:8px; margin-bottom:10px;">
+        <label style="font-size:0.95em;">Müzik Ses Seviyesi: <span id="music-volume-label">20</span>%
+          <input type="range" id="music-volume" min="0" max="100" value="20" style="width:180px; margin-left:8px;">
+        </label>
+        <label style="font-size:0.95em;">Ses Efekti Seviyesi: <span id="sfx-volume-label">50</span>%
+          <input type="range" id="sfx-volume" min="0" max="100" value="50" style="width:180px; margin-left:8px;">
+        </label>
+      </div>
+      <div id="hint-area" style="min-height:32px; margin-bottom:10px; color:#353b48; font-weight:500;"></div>
+      <audio id="music1" src="music1.mp3" preload="auto"></audio>
+      <audio id="music2" src="music2.mp3" preload="auto"></audio>
+      <audio id="music3" src="music3.mp3" preload="auto"></audio>
+    </div>
+    <!-- Sonuç Ekranı -->
+    <div id="result-screen" style="display:none;">
+      <h2>Oyun Bitti!</h2>
+      <p id="final-score"></p>
+      <button id="restart-btn">Tekrar Oyna</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html> 
